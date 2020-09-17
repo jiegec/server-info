@@ -1,0 +1,12 @@
+#!/bin/sh
+echo "CPU:"
+lscpu | grep "Model name"
+lscpu | grep "Socket"
+echo "Board:"
+sudo ipmitool fru print 0 | grep "Board Product"
+sudo ipmitool fru print 0 | grep "Board Serial"
+sudo ipmitool fru print 0 | grep "Board Part Number"
+echo "Product:"
+sudo ipmitool fru print 0 | grep "Product Name"
+sudo ipmitool fru print 0 | grep "Product Part Number"
+sudo ipmitool fru print 0 | grep "Product Serial"
