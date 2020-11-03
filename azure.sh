@@ -10,6 +10,15 @@ echo 'Private ip address:' $(jq -r .network.interface[0].ipv4.ipAddress[0].priva
 echo 'Public ip address:' $(jq -r .network.interface[0].ipv4.ipAddress[0].publicIpAddress metadata.json)
 echo 'CPU model': $(lscpu | sed -nr '/Model name/ s/.*:\s*(.*)/\1/p')
 
+which gcc
+gcc --version
+which icc
+icc --version
+which nvcc
+nvcc --version
+
+unset SSH_CLIENT
+unset SSH_CONNECTION
 # https://github.com/SC-Tech-Program/Author-Kit/blob/master/collect_environment.sh
 env | sed "s/$USER/USER/g"
 lsb_release -a
