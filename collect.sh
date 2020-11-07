@@ -1,10 +1,10 @@
 #!/bin/sh
 # ref: https://github.com/SC-Tech-Program/Author-Kit/blob/master/collect_environment.sh
+# sudo apt install -y jq inxi lsscsi ipmitool
 set -x
-sudo apt install -y jq inxi lsscsi ipmitool
 
 # azure
-curl -H 'Metadata: true' http://169.254.169.254/metadata/instance?api-version=2020-06-01 2>/dev/null >metadata.json
+curl --connect-timeout 1s -H 'Metadata: true' http://169.254.169.254/metadata/instance?api-version=2020-06-01 2>/dev/null >metadata.json
 echo 'VM size:' $(jq -r .compute.vmSize metadata.json)
 echo 'VM name:' $(jq -r .compute.name metadata.json)
 echo 'VM location:' $(jq -r .compute.location metadata.json)
@@ -29,13 +29,13 @@ gcc -march=native -Q --help=target | grep march
 
 # ipmi
 echo "Board:"
-sudo ipmitool fru print 0 | grep "Board Product"
-sudo ipmitool fru print 0 | grep "Board Serial"
-sudo ipmitool fru print 0 | grep "Board Part Number"
+ipmitool fru print 0 | grep "Board Product"
+ipmitool fru print 0 | grep "Board Serial"
+ipmitool fru print 0 | grep "Board Part Number"
 echo "Product:"
-sudo ipmitool fru print 0 | grep "Product Name"
-sudo ipmitool fru print 0 | grep "Product Part Number"
-sudo ipmitool fru print 0 | grep "Product Serial"
+ipmitool fru print 0 | grep "Product Name"
+ipmitool fru print 0 | grep "Product Part Number"
+ipmitool fru print 0 | grep "Product Serial"
 
 # env
 unset SSH_CLIENT
