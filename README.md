@@ -1,11 +1,5 @@
 # server-info
 
-Azure:
-
-```
-curl https://raw.githubusercontent.com/jiegec/server-info/master/azure.sh | sh
-```
-
 Collect:
 
 ```
