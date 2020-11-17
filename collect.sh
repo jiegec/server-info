@@ -13,7 +13,6 @@ echo 'Resource group:' $(jq -r .compute.resourceGroupName metadata.json)
 echo 'Private ip address:' $(jq -r .network.interface[0].ipv4.ipAddress[0].privateIpAddress metadata.json)
 echo 'Public ip address:' $(jq -r .network.interface[0].ipv4.ipAddress[0].publicIpAddress metadata.json)
 echo 'CPU model': $(lscpu | sed -nr '/Model name/ s/.*:\s*(.*)/\1/p')
-echo "CPU:"
 
 # compilers
 which gcc
